@@ -1,0 +1,53 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Angular
+frontend/expense-tracker-ui/dist/
+frontend/expense-tracker-ui/.angular/
+frontend/expense-tracker-ui/coverage/
+
+# .NET
+**/bin/
+**/obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+project.lock.json
+artifacts/
+
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+appsettings.*.local.json
+**/secrets.json
+
+# User secrets folder is outside the repo, but ignore accidental copies
+**/UserSecrets/
+
+# IDE
+.vs/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs and test output
+*.log
+npm-debug.log*
+test-results/
+coverage/
+
+# PostgreSQL dumps accidentally copied into the repo
+database/*.sql
+!database/.gitkeep

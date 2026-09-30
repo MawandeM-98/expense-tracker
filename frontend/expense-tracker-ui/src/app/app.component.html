@@ -1,0 +1,57 @@
+<main class="page">
+  <header class="hero">
+    <p class="eyebrow">Phase 1 · Project setup</p>
+    <h1>{{ title }}</h1>
+    <p class="lede">
+      This screen only checks that Angular can call the ASP.NET Core API.
+      Login, expenses, and the full dashboard come in later phases.
+    </p>
+  </header>
+
+  <section class="card" aria-live="polite">
+    <div class="card-header">
+      <h2>Connection status</h2>
+      <button type="button" class="ghost" (click)="refresh()" [disabled]="loading">
+        {{ loading ? 'Checking…' : 'Check again' }}
+      </button>
+    </div>
+
+    @if (loading) {
+      <p class="muted">Calling GET /api/health…</p>
+    }
+
+    @if (error) {
+      <p class="alert error" role="alert">{{ error }}</p>
+    }
+
+    @if (health && !loading) {
+      <dl class="status-grid">
+        <div>
+          <dt>API</dt>
+          <dd>
+            <span class="pill" [class.ok]="health.status === 'ok'" [class.warn]="health.status !== 'ok'">
+              {{ health.status }}
+            </span>
+          </dd>
+        </div>
+        <div>
+          <dt>Application</dt>
+          <dd>{{ health.application }}</dd>
+        </div>
+        <div>
+          <dt>PostgreSQL</dt>
+          <dd>
+            <span class="pill" [class.ok]="health.databaseConnected" [class.warn]="!health.databaseConnected">
+              {{ health.databaseConnected ? 'connected' : 'not connected' }}
+            </span>
+          </dd>
+        </div>
+        <div>
+          <dt>Provider</dt>
+          <dd>{{ health.databaseProvider }}</dd>
+        </div>
+      </dl>
+      <p class="muted">{{ health.databaseMessage }}</p>
+    }
+  </section>
+</main>
